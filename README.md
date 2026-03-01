@@ -44,6 +44,8 @@ If you set do-Monitor to log your location, then the coordinates of your device 
 
 Note that, if you stay at the same place, do-Monitor will not repeat the logging until you do not move again. It will also not save the csv, if you have only a single coordinate, for example, when you just wish to test the app coming with a lot of re-start.
 
+![Screenshot of plotted geolocations onto the map of Budapest with real-life data.](/map-1.png)
+
 ## USSD-like commands
 
 [USSD](https://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data) stands for _Unstructured Supplementary Service Data_, which usually refers to an easy, quick code, the user can send to the local GSM towers. With these codes you can configure your phone or get information. For example, at my phone provider, you can hide your phone number after dialing the code "`*31#`", and you can undo it with the code "`*30#`". It is followed by the logic of [Asterisk](https://docs.asterisk.org/Getting-Started/Beginning-Asterisk/). I warn you to not play dialing random USSD codes! Only use the codes you know what it is for, because some of them are not public but could affect GSM towers or other official objects.
