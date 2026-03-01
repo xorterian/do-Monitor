@@ -1,6 +1,6 @@
 # do-Monitor
 
-This is a Linux-based command-line tool which serves automated and programmable monitoring features on the subject of your iOS devices via VPN and [ADB](https://pages.github.com/) connection. It requires experience in the usage of linux and bash commands, having a simple, smartphone with the proper version of Android, mobile data or wi-fi connection, and tailscale installation. The promised solution is free, does not require root, and also works in distance as expected.
+This is a Linux-based command-line tool which serves automated and programmable monitoring features on the subject of your iOS devices via VPN and [ADB](https://developer.android.com/tools/adb) connection. It requires experience in the usage of linux and bash commands, having a simple, smartphone with the proper version of Android, mobile data or wi-fi connection, and tailscale installation. The promised solution is free, does not require root, and also works in distance as expected.
 
 ## Pre-requisites
 
@@ -82,6 +82,8 @@ You can also use it with your partner to make the common life more exciting.
 
 If your phone number is popular among the scammers or you have a guess that you are about to receive a suspicious call, it can be a great tool to save the call records as evidence.
 
+I also have to warn you that the do-Monitor in this form is highly vulnerable. This solution, including the VPN connection, the ADB connection, the freedom of the _scrcpy_, and the missing security tests, is not for business usage. It can be easily imagined ways to exploit this system, like to inject harmful codes, if our opponent knows our system quite well.
+
 ## Alternatives
 
-I can suggest the app [MacroDroid](https://pages.github.com/) which cannot record the calls and is not free but has a much richer toolset related to this topic.
+I can suggest the app [MacroDroid](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&pli=1) which cannot record the calls and is not free but has a much richer toolset related to this topic.
