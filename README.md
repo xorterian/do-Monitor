@@ -38,6 +38,8 @@ When you dial a number, the do-Monitor reads this act out from the system log, a
 
 When you finish the call, the do-Monitor knows it similarly, and finishes the record as well, then the record file will be saved to the mentioned folder.
 
+![Screenshot of a real-life call in two channels.](/call-1.png)
+
 ## Geolocations
 
 If you set do-Monitor to log your location, then the coordinates of your device will be saved into a csv file. With the default frequency, it logs your location in each minute. After the end of the process, it creates an interactive link which plots your moves onto the map. Thank [University of Keene](https://www.keene.edu/) for the independent job.
