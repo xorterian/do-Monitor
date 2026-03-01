@@ -40,7 +40,7 @@ When you finish the call, the do-Monitor knows it similarly, and finishes the re
 
 ## Geolocations
 
-If you set do-Monitor to log your location, then the coordinates of your device will be saved into a csv file. With the default frequency, it logs your location in each minute. After the end of the process, it creates an interactive link which plots your moves onto the map. Thank University of Keene for the independent job.
+If you set do-Monitor to log your location, then the coordinates of your device will be saved into a csv file. With the default frequency, it logs your location in each minute. After the end of the process, it creates an interactive link which plots your moves onto the map. Thank [University of Keene](https://www.keene.edu/) for the independent job.
 
 Note that, if you stay at the same place, do-Monitor will not repeat the logging until you do not move again. It will also not save the csv, if you have only a single coordinate, for example, when you just wish to test the app coming with a lot of re-start.
 
