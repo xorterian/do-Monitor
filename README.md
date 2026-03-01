@@ -24,7 +24,7 @@ Be on the wi-fi on both the computer and the phone. For first time you need to:
 - then reconnect to the device with the IP address you can see on the screen above the pairing options: "`adb connect 100.x.y.z:5555`",
 - and for now, you can switch from the wi-fi to mobile data, meaning your system will work in distance as well.
 
-Now get back to the command-line. You can test if the ADB connection is alive. For example, just type the command "adb shell cmd notification post ussd_cmd "`'This is a popup message.'"`". If it works, get to the directory of the do-Monitor, and now you are about to launch the bash code. Before it, note that, you need to grant the codes permission with the command "`chmod +x ./do-monitor.sh`", and do the same with all the codes inside the directory "_codes_". Now you can launch do-Monitor with the prompt: "`./do-monitor.sh`".
+Now get back to the command-line. You can test if the ADB connection is alive. For example, just type the command "`adb shell cmd notification post ussd_cmd "'This is a popup message.'"`". If it works, get to the directory of the do-Monitor, and now you are about to launch the bash code. Before it, note that, you need to grant the codes permission with the command "`chmod +x ./do-monitor.sh`", and do the same with all the codes inside the directory "_codes_". Now you can launch do-Monitor with the prompt: "`./do-monitor.sh`".
 
 You should test the software scrcpy as well, for say, with a command: "`scrcpy --record test-01.mp4 --audio-source=voice-call`". I wish to note that, at this point, it becomes important which version of Android you have, because some of them cannot make the records in both directions anymore.
 
