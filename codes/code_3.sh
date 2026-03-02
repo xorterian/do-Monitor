@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-VARS="../vars.ini"
-MODE=$2
+VARS="vars.ini"
+MODE=$1
 X=""
-case $1 in
+case $2 in
     '1') X="TARGET";;
     '2') X="IS_GEOLOG";;
     '3') X="DT";;

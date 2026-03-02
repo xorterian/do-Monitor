@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-ARG=$1
-MODE=$2
+MODE=$1
+ARG=$2
 C="Failed!"
 case "$MODE" in
     1)
