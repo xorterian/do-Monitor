@@ -88,6 +88,18 @@ If your phone number is popular among the scammers or you have a guess that you 
 
 I also have to warn you that the do-Monitor in this form is highly vulnerable. This solution, including the VPN connection, the ADB connection, the freedom of the _scrcpy_, and the missing security tests, is not for business usage. It can be easily imagined ways to exploit this system, like to inject harmful codes, if our opponent knows our system quite well.
 
+### TO-DOs
+
+Help me to complete the list:
+- [x] Automatic reconnection via mobile data
+- [x] Logging geolocation
+- [x] USSD-like code-triggered setups (switch recording on/off)
+- [ ] Hide the app-related icons from the status bar
+- [ ] Stream geolocation
+- [ ] Host server for do-Monitor
+- [ ] USSD-like code-triggered file transfer to a cloud/email address (record files)
+- [ ] Security tests
+
 ## Alternatives
 
 I can suggest the app [MacroDroid](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&pli=1) which cannot record the calls and is not free but has a much richer toolset related to this topic.
