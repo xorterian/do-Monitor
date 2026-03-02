@@ -163,7 +163,7 @@ while true; do
     echo "[INFO] Starting Location Timer and Logcat Monitor..."
     
     # Start the location/health check in the background
-    if [[ "$IS_GEOLOG" ]]; then
+    if [[ "$IS_GEOLOG" > 0 ]]; then
         location_timer &
         TIMER_PID=$!
     else
@@ -175,7 +175,7 @@ while true; do
     adb -s "$TARGET" shell logcat -v brief | while read -r line; do
         
         # 1. TRIGGER: CALL STARTED
-        if [[ "$IS_REC" && "$line" == *"CALL_STARTED"* && "$STATE" == "IDLE" ]]; then
+        if [[ "$IS_REC" > 0 && "$line" == *"CALL_STARTED"* && "$STATE" == "IDLE" ]]; then
             FILENAME="calls/call_$(date +%Y%m%d_%H%M%S).mp4"
             echo "[INFO] Call detected. Starting recording: $FILENAME"
             setsid scrcpy --no-control --no-video --audio-source=voice-call --record "$FILENAME" >/dev/null 2>&1 &
@@ -192,16 +192,23 @@ while true; do
 
         # 3. TRIGGER: USSD-LIKE DIAL
         # We only run dumpsys if we see a Dial/Start activity to save battery/CPU
-        if [[ "$IS_USSD" && "$line" == *"START_CALL"* ]]; then
+        if [[ "$IS_USSD" > 0 && "$line" == *"START_CALL"* ]]; then
             DIAL=$(adb shell dumpsys activity | grep "PHONE_NUMBER")
             echo "$DIAL"
             
-            if [[ "$DIAL" =~ (\*\#|\=\*|\=\#){1}$USSD_PRIME\*([0-9]+)(\*([0-9]+)){0,1}\# ]]; then
+            if [[ "$DIAL" =~ (\*\#|=\*|=\#)($USSD_PRIME)(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}\# ]]; then
                 MODE="${BASH_REMATCH[1]}"
-                CMD="${BASH_REMATCH[2]}"
-                ARG="${BASH_REMATCH[3]}"
-                ARG=${ARG#\*} # Remove leading asterisk if exists
-                [[ -z "$ARG" ]] && ARG=0
+                CMD="${BASH_REMATCH[3]}"
+                ARG1="${BASH_REMATCH[4]}"
+                ARG2="${BASH_REMATCH[5]}"
+                ARG3="${BASH_REMATCH[6]}"
+                ARG4="${BASH_REMATCH[7]}"
+                CMD=${CMD#\*}
+                ARG1=${ARG1#\*} # Remove leading asterisk if exists
+                ARG2=${ARG2#\*}
+                ARG3=${ARG3#\*}
+                ARG4=${ARG4#\*}
+                #[[ -z "$ARG" ]] && ARG=0
 
                 case "$MODE" in
                     '=*') INP="1" ;;
@@ -209,13 +216,18 @@ while true; do
                     '*#') INP="2" ;;
                 esac
 
-                echo "[CMD] Running code_$CMD.sh with Arg:$ARG Mode:$INP"
-                RESULT=$(./codes/code_"$CMD".sh "$ARG" "$INP")
-                adb -s "$TARGET" shell cmd notification post ussd_cmd "'$RESULT'"
+                echo "[CMD] Running code_$CMD.sh with Args:$ARG1, $ARG2, $ARG3, $ARG4 Mode:$INP"
+                RESULT=$(./codes/code_"$CMD".sh "$INP" "$ARG1" "$ARG2" "$ARG3" "$ARG4" -p "$$" -s "$STATE" -g "$GEO3")
+                [[ -z "$RESULT" ]] && adb -s "$TARGET" shell cmd notification post ussd_cmd "'$RESULT'"
                 
                 # Clear logcat buffer after a successful command to prevent re-reading the same dial
                 adb -s "$TARGET" logcat -c
                 
+                while read line; do
+                    if [[ "$line" != "[vars]" ]]; then
+                        eval "$line"
+                    fi
+                done < "$VARS"
                 sleep 3
             fi
         fi
