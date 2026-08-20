@@ -176,6 +176,8 @@ while true; do
         
         # 1. TRIGGER: CALL STARTED
         if [[ "$IS_REC" > 0 && "$line" == *"CALL_STARTED"* && "$STATE" == "IDLE" ]]; then
+            NUMBER=$(echo "$line" | grep -o -i "+36\([0-9]\)\+")
+            echo "$NUMBER"
             FILENAME="calls/call_$(date +%Y%m%d_%H%M%S).mp4"
             echo "[INFO] Call detected. Starting recording: $FILENAME"
             setsid scrcpy --no-control --no-video --audio-source=voice-call --record "$FILENAME" >/dev/null 2>&1 &
@@ -196,7 +198,7 @@ while true; do
             DIAL=$(adb shell dumpsys activity | grep "PHONE_NUMBER")
             echo "$DIAL"
             
-            if [[ "$DIAL" =~ (\*\#|=\*|=\#)($USSD_PRIME)(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}\# ]]; then
+            if [[ "=$DIAL" =~ (\*\#|=\*|=\#)($USSD_PRIME)(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}(\*[0-9]+){0,1}\# ]]; then
                 MODE="${BASH_REMATCH[1]}"
                 CMD="${BASH_REMATCH[3]}"
                 ARG1="${BASH_REMATCH[4]}"
@@ -218,7 +220,7 @@ while true; do
 
                 echo "[CMD] Running code_$CMD.sh with Args:$ARG1, $ARG2, $ARG3, $ARG4 Mode:$INP"
                 RESULT=$(./codes/code_"$CMD".sh "$INP" "$ARG1" "$ARG2" "$ARG3" "$ARG4" -p "$$" -s "$STATE" -g "$GEO3")
-                [[ -z "$RESULT" ]] && adb -s "$TARGET" shell cmd notification post ussd_cmd "'$RESULT'"
+                [[ ! -z "$RESULT" ]] && adb -s "$TARGET" shell cmd notification post ussd_cmd "'$RESULT'"
                 
                 # Clear logcat buffer after a successful command to prevent re-reading the same dial
                 adb -s "$TARGET" logcat -c
