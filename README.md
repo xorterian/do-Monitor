@@ -70,7 +70,7 @@ It is possible that your phone pause the app if it is seemed unused. To avoid th
 
 ## Legal usage
 
-This project is designed for experimental, personal usage for home.
+This project is designed for experimental, personal usage for home or for laboratory environments.
 
 You can make tests on your own devices and on your own network. Its usage on other people's devices is highly unrecommended even if they agreed on it. It would be not just unethical but, in some countries, supposed to be against the law.
 
@@ -84,9 +84,13 @@ If you are a parent, it can be a possible usage to monitor the activity of your 
 
 You can also use it with your partner to make the common life more exciting.
 
-If your phone number is popular among the scammers or you have a guess that you are about to receive a suspicious call, it can be a great tool to save the call records as evidence.
+If your phone number is on the scammers' list or you have a guess that you are about to receive a suspicious call, it sounds a great idea to have this tool to save the call records as evidence. But it is not. Do not do that without the precise knowledge of your rights and the laws.
 
 I also have to warn you that the do-Monitor in this form is highly vulnerable. This solution, including the VPN connection, the ADB connection, the freedom of the _scrcpy_, and the missing security tests, is not for business usage. It can be easily imagined ways to exploit this system, like to inject harmful codes, if our opponent knows our system quite well.
+
+### Demo (in Hungarian)
+
+[![YouTube video](https://img.youtube.com/vi/HVMdz1bvYPU/0.jpg)](https://youtu.be/HVMdz1bvYPU)
 
 ### TO-DOs
 
@@ -94,11 +98,14 @@ Help me to complete the list:
 - [x] Automatic reconnection via mobile data
 - [x] Logging geolocation
 - [x] USSD-like code-triggered setups (switch recording on/off)
+- [x] Termux compatibility
 - [ ] Hide the app-related icons from the status bar
 - [ ] Stream geolocation
 - [ ] Host server for do-Monitor
 - [ ] USSD-like code-triggered file transfer to a cloud/email address (record files)
 - [ ] Security tests
+
+If you like this project, support me on [Patreon](https://www.patreon.com/c/Treistein) ;)
 
 ## Alternatives
 
